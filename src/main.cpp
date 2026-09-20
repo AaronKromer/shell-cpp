@@ -9,12 +9,19 @@ int main() {
   // TODO: Uncomment the code below to pass the first stage
 
   while(true){
+    std::string command;
     std::string input;
     std::cout << "$ ";
+    std::cin >> command;
     std::getline(std::cin, input);
-    if (input == "exit") {
+    if (command == "exit") {
 
       break;
+
+    }
+    if (command == "echo") {
+
+      std::cout << input << std::endl;
 
     }
     std::cout << input <<": command not found" << std::endl;
