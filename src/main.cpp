@@ -25,15 +25,21 @@ int main() {
       continue;
     }
     if (command == "type") {
+      bool found= false;
       std::string supported[3] = {"echo", "exit", "type"};
       for (int i=0; i<3;i++){
         if (supported[i] == input){
           std::cout << input << " is a shell builtin" << std::endl;
+          found = true;
           continue;
         }
       }
-
-      continue;
+      if(found){
+        continue;
+      }
+      else{
+        std::cout << command <<": not found" << std::endl;
+      }
     }
     std::cout << command <<": command not found" << std::endl;
 
