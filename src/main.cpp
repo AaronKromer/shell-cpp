@@ -25,7 +25,7 @@ int main() {
       continue;
     }
     if (command == "type") {
-      bool found= false;
+      bool found = false;
       std::string supported[3] = {"echo", "exit", "type"};
       for (int i=0; i<3;i++){
         if (supported[i] == input){
@@ -38,7 +38,7 @@ int main() {
         continue;
       }
       else{
-        std::cout << command <<": not found" << std::endl;
+        std::cout << input <<": not found" << std::endl;
       }
     }
     std::cout << command <<": command not found" << std::endl;
