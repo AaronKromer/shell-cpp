@@ -18,14 +18,11 @@ int main() {
       input = input.substr(1);
     }
     if (command == "exit") {
-
       break;
-
     }
     if (command == "echo") {
-
       std::cout << input << std::endl;
-
+      break;
     }
     std::cout << input <<": command not found" << std::endl;
 
