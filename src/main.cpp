@@ -22,9 +22,9 @@ int main() {
     }
     if (command == "echo") {
       std::cout << input << std::endl;
-      break;
+      continue;
     }
-    std::cout << input <<": command not found" << std::endl;
+    std::cout << command <<": command not found" << std::endl;
 
 
   }
