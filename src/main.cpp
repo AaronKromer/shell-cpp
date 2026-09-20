@@ -34,12 +34,10 @@ int main() {
           continue;
         }
       }
-      if(found){
-        continue;
-      }
-      else{
+      if(!found){
         std::cout << input <<": not found" << std::endl;
       }
+      continue;
     }
     std::cout << command <<": command not found" << std::endl;
 
