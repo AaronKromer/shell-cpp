@@ -14,6 +14,9 @@ int main() {
     std::cout << "$ ";
     std::cin >> command;
     std::getline(std::cin, input);
+    if (!input.empty()) {
+      input = input.substr(1);
+    }
     if (command == "exit") {
 
       break;
