@@ -7,8 +7,8 @@ int main() {
   std::cerr << std::unitbuf;
 
   // TODO: Uncomment the code below to pass the first stage
-  bool quit=false
-  while(! quit){
+
+  while(true){
     std::string input;
     std::cout << "$ ";
     if (input == "exit") {
