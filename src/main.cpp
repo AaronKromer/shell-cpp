@@ -46,8 +46,6 @@ int main() {
           if(PATH[i] == ';' || PATH[i] == ':'){
             path=PATH.substr(casebefore, i);
             casebefore=i+1;
-            std::cout << " che se dice " << path;
-            std::cout << " che se dice2 " << PATH;
             std::filesystem::path dirpath = std::string(path);
             bool dirpathExists = std::filesystem::is_directory(dirpath);
             if(dirpathExists){
