@@ -50,7 +50,7 @@ int main() {
             bool dirpathExists = std::filesystem::is_directory(dirpath);
             if(dirpathExists){
               std::filesystem::path exepath = std::string(path + "/" + input);
-              bool exepathExists = std::filesystem::exists(dirpath);
+              bool exepathExists = std::filesystem::exists(exepath);
               if(exepathExists){
                 std::cout << input << " is " << exepath.c_str() << std::endl;
                 found=true;
