@@ -47,9 +47,9 @@ int main() {
             casebefore=i+1;
             std::filesystem::path dirpath = std::string(path);
             bool dirpathExists = std::filesystem::is_directory(dirpath);
+            std::cout << path;
             if(dirpathExists){
               std::filesystem::path exepath = std::string(path + "/" + input);
-              std::cout << path;
               bool exepathExists = std::filesystem::exists(exepath);
               if(exepathExists){
                 std::cout << input << " is " << exepath.c_str() << std::endl;
