@@ -11,7 +11,7 @@ int main() {
 
   while(true){
     std::string PATH = std::getenv("PATH");
-
+    bool found = false;
     std::string command;
     std::string input;
     std::cout << "$ ";
@@ -28,7 +28,6 @@ int main() {
       continue;
     }
     if (command == "type") {
-      bool found = false;
       std::string supported[3] = {"echo", "exit", "type"};
       for (int i=0; i<3;i++){
         if (supported[i] == input){
@@ -54,6 +53,7 @@ int main() {
               if(exepathExists){
                 std::cout << input << " is " << exepath.c_str() << std::endl;
                 found=true;
+                break;
               }
             }
           }
