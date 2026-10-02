@@ -44,7 +44,7 @@ int main() {
         std::string path;
         for(int i=0;i<len;i++){
           if(PATH[i] == ';' || PATH[i] == ':'){
-            path=PATH.substr(casebefore, i-1);
+            path=PATH.substr(casebefore, i);
             casebefore=i+1;
             std::cout << " che se dice " << path;
             std::cout << " che se dice2 " << PATH;
