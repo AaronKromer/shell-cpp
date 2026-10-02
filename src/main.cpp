@@ -53,7 +53,7 @@ int main() {
               bool exepathExists = std::filesystem::exists(dirpath);
               if(exepathExists){
                 std::cout << command << "is" << exepath;
-                found=true
+                found=true;
               }
             }
           }
