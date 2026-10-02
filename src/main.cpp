@@ -45,8 +45,8 @@ int main() {
           if(PATH[i] == ';' || PATH[i] == ':'){
             path=PATH.substr(casebefore, i-casebefore);
             casebefore=i+1;
+            std::filesystem::path dirpath = std::string(path);
             bool dirpathExists = std::filesystem::is_directory(dirpath);
-            std::cout << path<<i;
             if(dirpathExists){
               std::filesystem::path exepath = std::string(path + "/" + input);
               bool exepathExists = std::filesystem::exists(exepath);
