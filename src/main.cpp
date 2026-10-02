@@ -65,6 +65,12 @@ int main() {
       }
       continue;
     }
+    if((access(command.c_str(), X_OK) == 0)){
+      int result = std::system(command);
+    }
+    
+    
+    
     std::cout << command <<": command not found" << std::endl;
 
 
