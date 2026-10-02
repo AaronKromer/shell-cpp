@@ -49,10 +49,10 @@ int main() {
             std::filesystem::path dirpath = std::string(path);
             bool dirpathExists = std::filesystem::is_directory(dirpath);
             if(dirpathExists){
-              std::filesystem::path exepath = std::string(path + "/" + command);
+              std::filesystem::path exepath = std::string(path + "/" + input);
               bool exepathExists = std::filesystem::exists(dirpath);
               if(exepathExists){
-                std::cout << command << "is" << exepath;
+                std::cout << input << "is" << exepath;
                 found=true;
               }
             }
