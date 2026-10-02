@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 #include <string>
 #include <filesystem>
 
@@ -50,8 +51,8 @@ int main() {
             std::filesystem::path exepath = std::string(path + "/" + input);
             bool exepathExists = std::filesystem::exists(exepath);
 
-            if(exepathExists && dirpathExists){
-              std::cout << input << " is " << exepath.c_str() << std::endl;
+            if(exepathExists && dirpathExists && access(exepath.string(), X_OK) == 0){
+              std::cout << input << " is " << exepath.string() << std::endl;
               found=true;
               break;
             }
