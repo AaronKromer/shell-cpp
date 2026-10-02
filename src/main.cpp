@@ -66,7 +66,7 @@ int main() {
       continue;
     }
     if((access(command.c_str(), X_OK) == 0)){
-      int result = std::system(command);
+      int result = std::system(command.c_str());
     }
     
     
