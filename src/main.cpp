@@ -92,7 +92,7 @@ int main() {
           bool exepathExists = std::filesystem::exists(exepath);
           if(exepathExists && dirpathExists && (access(exepath_string.c_str(), X_OK) == 0) ){
             int nArgs=args.size()+1;
-            //int result = std::system(command.c_str());
+            int result = std::system(command.c_str());
             std::cout << "Program was passeds "<< args[1] <<" args (including program name)." << std::endl;
             found=true;
             break;
