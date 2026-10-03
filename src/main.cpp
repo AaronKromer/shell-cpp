@@ -17,6 +17,13 @@ int main() {
     std::string input;
     std::cout << "$ ";
     std::cin >> command;
+    std::vector<std::string> args;
+    std::getline(std::cin, input);
+    std::stringstream ss(input);
+    std::string arg;
+    while (ss >> arg) {
+        args.push_back(arg);
+    }
     std::getline(std::cin, input);
     if (!input.empty()) {
       input = input.substr(1);
@@ -65,8 +72,12 @@ int main() {
       }
       continue;
     }
-    if((access(command.c_str(), X_OK) == 0)){
+    if((command.rfind("./", 0) && (access(command.c_str(), X_OK) == 0)){
+      nArgs=args.lenght()
       int result = std::system(command.c_str());
+      std::cout << "Program was passed "<< nArgs <<" args (including program name)." << std::endl;
+
+      continue;
     }
     
     
