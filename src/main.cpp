@@ -72,7 +72,7 @@ int main() {
       }
       continue;
     }
-    if((access(command.c_str(), X_OK) == 0)){
+    if((access(command.c_str(), X_OK) == 0) || (access(("./"+command).c_str(), X_OK) == 0)){
       int nArgs=args.size()+1;
       int result = std::system(command.c_str());
       std::cout << "Program was passed "<< nArgs <<" args (including program name)." << std::endl;
@@ -105,12 +105,7 @@ int main() {
         continue;
       }
     }
-    if((access(command.c_str(), X_OK) == 0)){
-      int nArgs=args.size()+1;
-      int result = std::system(command.c_str());
-      std::cout << "Program was passed "<< nArgs <<" args (including program name)." << std::endl;
-      continue;
-    }
+
     
     
     
