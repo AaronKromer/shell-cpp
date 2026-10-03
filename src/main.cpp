@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <string>
 #include <filesystem>
+#include <vector>
+#include <sstream>
 
 int main() {
   // Flush after every std::cout / std:cerr
