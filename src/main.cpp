@@ -88,7 +88,7 @@ int main() {
           casebefore=i+1;
           std::filesystem::path dirpath = std::string(path);
           bool dirpathExists = std::filesystem::is_directory(dirpath);
-          std::string exepath_string = path + "/" + input;
+          std::string exepath_string = path + "/" + command;
           std::filesystem::path exepath = std::string(exepath_string);
           bool exepathExists = std::filesystem::exists(exepath);
           if(exepathExists && dirpathExists && (access(exepath_string.c_str(), X_OK) == 0) ){
