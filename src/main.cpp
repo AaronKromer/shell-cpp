@@ -72,7 +72,7 @@ int main() {
       }
       continue;
     }
-    if((command.rfind("./", 0) && (access(command.c_str(), X_OK) == 0)){
+    if((command.rfind("./", 0)) && (access(command.c_str(), X_OK) == 0)){
       nArgs=args.lenght()
       int result = std::system(command.c_str());
       std::cout << "Program was passed "<< nArgs <<" args (including program name)." << std::endl;
