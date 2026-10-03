@@ -46,7 +46,6 @@ int main() {
         }
       }
       if(!found){
-        bool keepGoing = true;
         int len=PATH.length();
         int casebefore=0;
         std::string path;
@@ -77,7 +76,39 @@ int main() {
       int nArgs=args.size()+1;
       int result = std::system(command.c_str());
       std::cout << "Program was passed "<< nArgs <<" args (including program name)." << std::endl;
-
+      continue;
+    }
+    else{
+      int len=PATH.length();
+      int casebefore=0;
+      std::string path;
+      for(int i=0;i<len;i++){
+        if(PATH[i] == ';' || PATH[i] == ':'){
+          path=PATH.substr(casebefore, i-casebefore);
+          casebefore=i+1;
+          std::filesystem::path dirpath = std::string(path);
+          bool dirpathExists = std::filesystem::is_directory(dirpath);
+          std::string exepath_string = path + "/" + input;
+          std::filesystem::path exepath = std::string(exepath_string);
+          bool exepathExists = std::filesystem::exists(exepath);
+          if(exepathExists && dirpathExists && (access(exepath_string.c_str(), X_OK) == 0) ){
+            int nArgs=args.size()+1;
+            int result = std::system(command.c_str());
+            std::cout << "Program was passed "<< nArgs <<" args (including program name)." << std::endl;
+            found=true;
+            break;
+          }
+          
+        }
+      }
+      if(found){
+        continue;
+      }
+    }
+    if((access(command.c_str(), X_OK) == 0)){
+      int nArgs=args.size()+1;
+      int result = std::system(command.c_str());
+      std::cout << "Program was passed "<< nArgs <<" args (including program name)." << std::endl;
       continue;
     }
     
