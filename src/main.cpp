@@ -24,7 +24,6 @@ int main() {
     while (ss >> arg) {
         args.push_back(arg);
     }
-    std::getline(std::cin, input);
     if (!input.empty()) {
       input = input.substr(1);
     }
@@ -73,7 +72,7 @@ int main() {
       continue;
     }
     if((command.rfind("./", 0)) && (access(command.c_str(), X_OK) == 0)){
-      nArgs=args.lenght()
+      nArgs=args.size();
       int result = std::system(command.c_str());
       std::cout << "Program was passed "<< nArgs <<" args (including program name)." << std::endl;
 
