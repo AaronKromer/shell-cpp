@@ -5,6 +5,30 @@
 #include <vector>
 #include <sstream>
 
+
+bool pathSearch(string PATH, string exe){
+  
+  int len=PATH.length();
+  int casebefore=0;
+  std::string path;
+  for(int i=0;i<len;i++){
+    if(PATH[i] == ';' || PATH[i] == ':'){
+      path=PATH.substr(casebefore, i-casebefore);
+      casebefore=i+1;
+      std::filesystem::path dirpath = std::string(path);
+      bool dirpathExists = std::filesystem::is_directory(dirpath);
+      std::string exepath_string = path + "/" + exe;
+      std::filesystem::path exepath = std::string(exepath_string);
+      bool exepathExists = std::filesystem::exists(exepath);
+      if(exepathExists && dirpathExists && (access(exepath_string.c_str(), X_OK) == 0) ){
+        return true
+      }
+      
+    }
+  }
+  return false
+}
+
 int main() {
   // Flush after every std::cout / std:cerr
   std::cout << std::unitbuf;
@@ -36,77 +60,40 @@ int main() {
       std::cout << input << std::endl;
       continue;
     }
+    if (command == "pwd") {
+      std::cout << filesystem::current_path() << std::endl;
+      continue;
+    }
     if (command == "type") {
       std::string supported[3] = {"echo", "exit", "type"};
       for (int i=0; i<3;i++){
         if (supported[i] == input){
           std::cout << input << " is a shell builtin" << std::endl;
-          found = true;
           continue;
         }
       }
-      if(!found){
-        int len=PATH.length();
-        int casebefore=0;
-        std::string path;
-        for(int i=0;i<len;i++){
-          if(PATH[i] == ';' || PATH[i] == ':'){
-            path=PATH.substr(casebefore, i-casebefore);
-            casebefore=i+1;
-            std::filesystem::path dirpath = std::string(path);
-            bool dirpathExists = std::filesystem::is_directory(dirpath);
-            std::string exepath_string = path + "/" + input;
-            std::filesystem::path exepath = std::string(exepath_string);
-            bool exepathExists = std::filesystem::exists(exepath);
-            if(exepathExists && dirpathExists && (access(exepath_string.c_str(), X_OK) == 0) ){
-              std::cout << input << " is " << exepath.string() << std::endl;
-              found=true;
-              break;
-            }
-            
-          }
-        }
+      if (pathSearch(PATH, input))
+      {
+        std::cout << input << " is " << exepath.string() << std::endl;
+        continue;
       }
-      if(!found){
-        std::cout << input <<": not found" << std::endl;
-      }
+
+      std::cout << input <<": not found" << std::endl;
       continue;
     }
+
     if((access(command.c_str(), X_OK) == 0) || (access(("./"+command).c_str(), X_OK) == 0)){
       int nArgs=args.size()+1;
       int result = std::system(command.c_str());
       continue;
     }
-    else{
-      int len=PATH.length();
-      int casebefore=0;
-      std::string path;
-      for(int i=0;i<len;i++){
-        if(PATH[i] == ';' || PATH[i] == ':'){
-          path=PATH.substr(casebefore, i-casebefore);
-          casebefore=i+1;
-          std::filesystem::path dirpath = std::string(path);
-          bool dirpathExists = std::filesystem::is_directory(dirpath);
-          std::string exepath_string = path + "/" + command;
-          std::filesystem::path exepath = std::string(exepath_string);
-          bool exepathExists = std::filesystem::exists(exepath);
-          if(exepathExists && dirpathExists && (access(exepath_string.c_str(), X_OK) == 0) ){
-            int nArgs=args.size()+1;
-            int result = std::system((command + " "+input).c_str());
-            found=true;
-            break;
-          }
-          
-        }
-      }
-      if(found){
-        continue;
-      }
+    if (pathSearch(PATH, input))
+    {
+      int nArgs=args.size()+1;
+      int result = std::system((command + " "+input).c_str());
+      continue
     }
-
-    
-    
-    
+  
     std::cout << command <<": command not found" << std::endl;
 
 
