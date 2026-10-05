@@ -6,7 +6,7 @@
 #include <sstream>
 
 
-bool pathSearch(std::string PATH, std::string exe){
+std::string pathSearch(std::string PATH, std::string exe){
   
   int len=PATH.length();
   int casebefore=0;
@@ -21,12 +21,12 @@ bool pathSearch(std::string PATH, std::string exe){
       std::filesystem::path exepath = std::string(exepath_string);
       bool exepathExists = std::filesystem::exists(exepath);
       if(exepathExists && dirpathExists && (access(exepath_string.c_str(), X_OK) == 0) ){
-        return true
+        return exepath_string
       }
       
     }
   }
-  return false
+  return std::nullopt;
 }
 
 int main() {
@@ -61,7 +61,7 @@ int main() {
       continue;
     }
     if (command == "pwd") {
-      std::cout << filesystem::current_path() << std::endl;
+      std::cout << std::filesystem::current_path() << std::endl;
       continue;
     }
     if (command == "type") {
@@ -72,9 +72,9 @@ int main() {
           continue;
         }
       }
-      if (pathSearch(PATH, input))
+      if (auto executablePath = pathSearch(PATH, command))
       {
-        std::cout << input << " is " << exepath.string() << std::endl;
+        std::cout << input << " is " << *executablePath << std::endl;
         continue;
       }
 
@@ -87,10 +87,10 @@ int main() {
       int result = std::system(command.c_str());
       continue;
     }
-    if (pathSearch(PATH, input))
+    if (auto executablePath = pathSearch(PATH, command))
     {
       int nArgs=args.size()+1;
-      int result = std::system((command + " "+input).c_str());
+      int result = std::system((*executablePath + " "+input).c_str());
       continue;
     }
   
