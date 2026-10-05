@@ -91,7 +91,7 @@ int main() {
     {
       int nArgs=args.size()+1;
       int result = std::system((command + " "+input).c_str());
-      continue
+      continue;
     }
   
     std::cout << command <<": command not found" << std::endl;
