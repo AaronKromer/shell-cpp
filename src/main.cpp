@@ -62,7 +62,7 @@ int main() {
       continue;
     }
     if (command == "pwd") {
-      std::cout << std::filesystem::current_path() << std::endl;
+      std::cout << std::filesystem::current_path().string() << std::endl;
       continue;
     }
     if (command == "type") {
