@@ -66,21 +66,26 @@ int main() {
       continue;
     }
     if (command == "type") {
-      std::string supported[4] = {"echo", "exit", "type", "pwd"};
-      for (int i=0; i<4;i++){
+      std::vector<std::string> supported = {"echo", "exit", "type", "pwd"};
+      bool isBuiltin = false;
+      for (std::size_t i = 0; i < supported.size(); ++i){
         if (supported[i] == input){
           std::cout << input << " is a shell builtin" << std::endl;
-          continue;
+          break;
         }
+      }
+      if (isBuiltin) {
+        continue;
       }
       if (auto executablePath = pathSearch(PATH, command))
       {
         std::cout << input << " is " << *executablePath << std::endl;
         continue;
+      }else{
+        std::cout << input <<": not found" << std::endl;
+        continue;
       }
 
-      std::cout << input <<": not found" << std::endl;
-      continue;
     }
 
     if((access(command.c_str(), X_OK) == 0) || (access(("./"+command).c_str(), X_OK) == 0)){
