@@ -6,7 +6,7 @@
 #include <sstream>
 
 
-bool pathSearch(string PATH, string exe){
+bool pathSearch(std::string PATH, std::string exe){
   
   int len=PATH.length();
   int casebefore=0;
