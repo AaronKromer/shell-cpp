@@ -97,7 +97,7 @@ int main() {
     if (auto executablePath = pathSearch(PATH, command))
     {
       int nArgs=args.size()+1;
-      int result = std::system((*executablePath + " "+input).c_str());
+      int result = std::system((command + " "+input).c_str());
       continue;
     }
   
