@@ -2,11 +2,12 @@
 #include <unistd.h>
 #include <string>
 #include <filesystem>
+#include <optional>
 #include <vector>
 #include <sstream>
 
 
-std::string pathSearch(std::string PATH, std::string exe){
+std::optional<std::string> pathSearch(std::string PATH, std::string exe){
   
   int len=PATH.length();
   int casebefore=0;
@@ -21,7 +22,7 @@ std::string pathSearch(std::string PATH, std::string exe){
       std::filesystem::path exepath = std::string(exepath_string);
       bool exepathExists = std::filesystem::exists(exepath);
       if(exepathExists && dirpathExists && (access(exepath_string.c_str(), X_OK) == 0) ){
-        return exepath_string
+        return exepath_string;
       }
       
     }
