@@ -71,6 +71,7 @@ int main() {
       for (std::size_t i = 0; i < supported.size(); ++i){
         if (supported[i] == input){
           std::cout << input << " is a shell builtin" << std::endl;
+          isBuiltin = true;
           break;
         }
       }
