@@ -66,8 +66,8 @@ int main() {
       continue;
     }
     if (command == "type") {
-      std::string supported[3] = {"echo", "exit", "type", "pwd"};
-      for (int i=0; i<3;i++){
+      std::string supported[4] = {"echo", "exit", "type", "pwd"};
+      for (int i=0; i<4;i++){
         if (supported[i] == input){
           std::cout << input << " is a shell builtin" << std::endl;
           continue;
