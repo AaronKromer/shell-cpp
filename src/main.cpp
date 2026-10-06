@@ -78,7 +78,7 @@ int main() {
       if (isBuiltin) {
         continue;
       }
-      if (auto executablePath = pathSearch(PATH, command))
+      if (auto executablePath = pathSearch(PATH, input))
       {
         std::cout << input << " is " << *executablePath << std::endl;
         continue;
