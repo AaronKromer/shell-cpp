@@ -69,12 +69,12 @@ int main() {
       continue;
     }
     if (command == "cd") {
-      std::filesystem::path workingDir = input
+      std::filesystem::path workingDir = input;
       bool workingDirExists = std::filesystem::is_directory(workingDir);
       if(workingDirExists){
         std::filesystem::current_path(input);
       }else{
-        std::cout<< "cd: " << input << ": No such file or directory"
+        std::cout<< "cd: " << input << ": No such file or directory";
       }
       continue;
     }
