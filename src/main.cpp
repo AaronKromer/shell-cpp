@@ -12,15 +12,18 @@ std::optional<std::string> pathSearch(std::string PATH, std::string exe){
   int len=PATH.length();
   int casebefore=0;
   std::string path;
+
   for(int i=0;i<len;i++){
     if(PATH[i] == ';' || PATH[i] == ':'){
       path=PATH.substr(casebefore, i-casebefore);
       casebefore=i+1;
+
       std::filesystem::path dirpath = std::string(path);
       bool dirpathExists = std::filesystem::is_directory(dirpath);
       std::string exepath_string = path + "/" + exe;
       std::filesystem::path exepath = std::string(exepath_string);
       bool exepathExists = std::filesystem::exists(exepath);
+
       if(exepathExists && dirpathExists && (access(exepath_string.c_str(), X_OK) == 0) ){
         return exepath_string;
       }
@@ -63,6 +66,16 @@ int main() {
     }
     if (command == "pwd") {
       std::cout << std::filesystem::current_path().string() << std::endl;
+      continue;
+    }
+    if (command == "cd") {
+      std::filesystem::path workingDir = input
+      bool workingDirExists = std::filesystem::is_directory(workingDir);
+      if(workingDirExists){
+        std::filesystem::current_path(input);
+      }else{
+        std::cout<< "cd: " << input << ": No such file or directory"
+      }
       continue;
     }
     if (command == "type") {
