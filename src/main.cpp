@@ -74,7 +74,7 @@ int main() {
       if(workingDirExists){
         std::filesystem::current_path(input);
       }else{
-        std::cout<< "cd: " << input << ": No such file or directory";
+        std::cout<< "cd: " << input << ": No such file or directory"<< std::endl;
       }
       continue;
     }
